@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/jjhwan-h/CBNU_DIDI_BLOCKCHAIN/blockchain"
+	"github.com/jjhwan-h/DIDI_BLOCKCHAIN/blockchain"
 )
 
 const (
@@ -21,7 +21,7 @@ type homeData struct {
 var templates *template.Template
 
 func home(rw http.ResponseWriter, r *http.Request) {
-	data := homeData{"hello world", blockchain.GetBlockchain().AllBlocks()}
+	data := homeData{"hello world", nil}
 	templates.ExecuteTemplate(rw, "home", data)
 }
 func add(rw http.ResponseWriter, r *http.Request) {
@@ -31,7 +31,7 @@ func add(rw http.ResponseWriter, r *http.Request) {
 	case "POST":
 		r.ParseForm()
 		data := r.Form.Get("blockData")
-		blockchain.GetBlockchain().AddBlock(data)
+		blockchain.Blockchain().AddBlock(data)
 		http.Redirect(rw, r, "/", http.StatusPermanentRedirect)
 	}
 

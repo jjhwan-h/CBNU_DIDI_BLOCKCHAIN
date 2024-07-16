@@ -4,9 +4,10 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"runtime"
 
-	"github.com/jjhwan-h/CBNU_DIDI_BLOCKCHAIN/explorer"
-	"github.com/jjhwan-h/CBNU_DIDI_BLOCKCHAIN/rest"
+	"github.com/jjhwan-h/DIDI_BLOCKCHAIN/explorer"
+	"github.com/jjhwan-h/DIDI_BLOCKCHAIN/rest"
 )
 
 func usage() {
@@ -14,7 +15,7 @@ func usage() {
 	fmt.Printf("Please use the following flags:\n\n")
 	fmt.Printf("-port=: Set the PORT of the server\n")
 	fmt.Printf("-mode=: Choose between 'html' and 'rest'\n")
-	os.Exit(0)
+	runtime.Goexit() //모든게 종료, defer수행 후
 }
 
 func Start() {
